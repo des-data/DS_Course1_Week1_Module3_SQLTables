@@ -13,7 +13,7 @@ pd.read_sql("""SELECT * FROM sqlite_master""", conn)
 # CodeGrade step1
 # Replace None with your code
 df_boston = pd.read_sql("""
-    SELECT e.firstName, e.lastName, e.jobTitle
+    SELECT e.firstName, e.lastName
     FROM employees e
     JOIN offices o
     USING(officeCode)
@@ -55,7 +55,7 @@ df_employee
 # CodeGrade step4
 # Replace None with your code
 df_contacts = pd.read_sql("""
-    SELECT c.customerName, c.contactFirstName, c.contactLastName, c.phone, c.salesRepEmployeeNumber
+    SELECT c.contactFirstName, c.contactLastName, c.phone, c.salesRepEmployeeNumber
     FROM customers c
     LEFT JOIN orders o
     USING(customerNumber)
@@ -71,7 +71,7 @@ df_contacts
 df_payment = pd.read_sql("""
     SELECT c.contactFirstName, c.contactLastName, p.amount, p.paymentDate
     FROM customers c
-    LEFT JOIN payments p
+    JOIN payments p
     USING(customerNumber)
     ORDER BY CAST(p.amount AS REAL) DESC;
 
